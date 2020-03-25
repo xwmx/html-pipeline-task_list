@@ -15,15 +15,15 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_dependency 'html-pipeline'
+  gem.add_dependency 'html-pipeline', '~> 2.12'
 
-  gem.add_development_dependency 'coffee-script'
-  gem.add_development_dependency 'commonmarker'
-  gem.add_development_dependency 'github-markdown'
-  gem.add_development_dependency 'json'
-  gem.add_development_dependency 'minitest', '~> 5.3.2'
-  gem.add_development_dependency 'rack'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rubocop'
-  gem.add_development_dependency 'sprockets'
+  gem.add_development_dependency 'coffee-script', '~> 2.4'
+  gem.add_development_dependency 'commonmarker', '~> 0.21.0'
+  gem.add_development_dependency 'github-markdown', '~> 0.6.9'
+  gem.add_development_dependency 'json', '~> 2.3'
+  gem.add_development_dependency 'minitest', '~> 5.14'
+  gem.add_development_dependency 'rack', '~> 2.2'
+  gem.add_development_dependency 'rake', '~> 13.0'
+  gem.add_development_dependency 'rubocop', '~> 0.80.1'
+  gem.add_development_dependency 'sprockets', '~> 4.0'
 end
