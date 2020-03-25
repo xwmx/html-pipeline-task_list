@@ -1,25 +1,25 @@
-require File.expand_path('../../../test_helper', __FILE__)
+require File.expand_path('../../test_helper', __dir__)
 
 class TaskListTest < Minitest::Test
-  class Record < Struct.new(:body)
+  Record = Struct.new(:body) do
     def task_list_items
       []
     end
   end
 
   def test_has_summary
-    assert summary = task_list("- [ ] one").summary, "summary expected"
+    assert summary = task_list('- [ ] one').summary, 'summary expected'
     assert_kind_of HTML::Pipeline::TaskList::Summary, summary
   end
 
   def test_complete_item
-    item = HTML::Pipeline::TaskList::Item.new("[x]", "complete")
-    assert item.complete?, "expected to be complete"
+    item = HTML::Pipeline::TaskList::Item.new('[x]', 'complete')
+    assert item.complete?, 'expected to be complete'
   end
 
   def test_incomplete_item
-    item = HTML::Pipeline::TaskList::Item.new("[ ]", "incomplete")
-    assert !item.complete?, "expected to be incomplete"
+    item = HTML::Pipeline::TaskList::Item.new('[ ]', 'incomplete')
+    assert !item.complete?, 'expected to be incomplete'
   end
 
   protected

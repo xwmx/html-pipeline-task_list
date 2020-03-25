@@ -11,6 +11,11 @@
 Metrics/ClassLength:
   Max: 120
 
+# Offense count: 3
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/MethodLength:
+  Max: 80
+
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
@@ -19,5 +24,23 @@ Layout/LineLength:
   Max: 120
 
 # Offense count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, EnforcedStyle.
+# SupportedStyles: nested, compact
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Offense count: 14
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, always_true, never
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Offense count: 6
 Style/Documentation:
-  Exclude: false
+  Enabled: false
+
+# Offense count: 1
+Metrics/AbcSize:
+  Max: 40

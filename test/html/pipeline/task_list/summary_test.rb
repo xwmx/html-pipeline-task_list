@@ -1,20 +1,20 @@
-require File.expand_path('../../../../test_helper', __FILE__)
+require File.expand_path('../../../test_helper', __dir__)
 
 class HTML::Pipeline::TaskList::SummaryTest < Minitest::Test
   def setup
-    @complete   = make_item "[x]", "complete"
-    @incomplete = make_item "[ ]", "incomplete"
+    @complete   = make_item '[x]', 'complete'
+    @incomplete = make_item '[ ]', 'incomplete'
     @items = [@complete, @incomplete]
     @summary = make_summary @items
   end
 
   def test_no_items
     summary = make_summary []
-    assert !summary.items?, "no task list items are expected"
+    assert !summary.items?, 'no task list items are expected'
   end
 
   def test_items
-    assert @summary.items?, "task list items are expected"
+    assert @summary.items?, 'task list items are expected'
     assert_equal 2, @summary.item_count
   end
 
@@ -28,7 +28,7 @@ class HTML::Pipeline::TaskList::SummaryTest < Minitest::Test
 
   protected
 
-  def make_item(checkbox_text = "[ ]", source = "an item!")
+  def make_item(checkbox_text = '[ ]', source = 'an item!')
     HTML::Pipeline::TaskList::Item.new(checkbox_text, source)
   end
 

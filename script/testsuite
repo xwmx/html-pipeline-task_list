@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
-root = File.expand_path("../..", __FILE__)
+root = File.expand_path('..', __dir__)
 Dir.chdir root
 
 port = ARGV[0] || 4000
 
 pid = fork do
-  $stderr.reopen "/dev/null" # silence WEBrick output
+  $stderr.reopen '/dev/null' # silence WEBrick output
   exec 'bundle', 'exec', 'rackup', '-p', port.to_s
 end
 sleep 1

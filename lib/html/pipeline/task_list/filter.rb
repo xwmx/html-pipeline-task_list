@@ -28,36 +28,35 @@ class HTML::Pipeline::TaskList
   # The following keys are written to the result hash:
   #   :task_list_items - An array of TaskList::Item objects.
   class Filter < HTML::Pipeline::Filter
+    INCOMPLETE = '[ ]'.freeze
+    COMPLETE   = '[x]'.freeze
 
-    Incomplete = "[ ]".freeze
-    Complete   = "[x]".freeze
-
-    IncompletePattern = /\[[[:space:]]\]/.freeze # matches all whitespace
-    CompletePattern   = /\[[xX]\]/.freeze        # matches any capitalization
+    INCOMPLETE_PATTERN = /\[[[:space:]]\]/.freeze # matches all whitespace
+    COMPLETE_PATTERN   = /\[[xX]\]/.freeze        # matches any capitalization
 
     # Pattern used to identify all task list items.
     # Useful when you need iterate over all items.
-    ItemPattern = /
+    ITEM_PATTERN = /
       ^
       (?:\s*[-+*]|(?:\d+\.))? # optional list prefix
       \s*                     # optional whitespace prefix
       (                       # checkbox
-        #{CompletePattern}|
-        #{IncompletePattern}
+        #{COMPLETE_PATTERN}|
+        #{INCOMPLETE_PATTERN}
       )
       (?=\s)                  # followed by whitespace
-    /x
+    /x.freeze
 
-    ListItemSelector = ".//li[task_list_item(.)]".freeze
+    LIST_ITEM_SELECTOR = './/li[task_list_item(.)]'.freeze
 
     class XPathSelectorFunction
       def self.task_list_item(nodes)
-        nodes if nodes.text =~ ItemPattern
+        nodes if nodes.text =~ ITEM_PATTERN
       end
     end
 
     # Selects first P tag of an LI, if present
-    ItemParaSelector = "./p[1]".freeze
+    ITEM_PARA_SELECTOR = './p[1]'.freeze
 
     # List of `TaskList::Item` objects that were recognized in the document.
     # This is available in the result hash as `:task_list_items`.
@@ -90,7 +89,7 @@ class HTML::Pipeline::TaskList
     # Returns the marked up task list item Nokogiri::XML::NodeSet object.
     def render_task_list_item(item)
       Nokogiri::HTML.fragment \
-        item.source.sub(ItemPattern, render_item_checkbox(item)), 'utf-8'
+        item.source.sub(ITEM_PATTERN, render_item_checkbox(item)), 'utf-8'
     end
 
     # Public: Select all task lists from the `doc`.
@@ -98,7 +97,7 @@ class HTML::Pipeline::TaskList
     # Returns an Array of Nokogiri::XML::Element objects for ordered and
     # unordered lists.
     def list_items
-      doc.xpath(ListItemSelector, XPathSelectorFunction)
+      doc.xpath(LIST_ITEM_SELECTOR, XPathSelectorFunction)
     end
 
     # Filters the source for task list items.
@@ -114,19 +113,19 @@ class HTML::Pipeline::TaskList
         add_css_class(li.parent, 'task-list')
 
         outer, inner =
-          if p = li.xpath(ItemParaSelector)[0]
+          if (p = li.xpath(ITEM_PARA_SELECTOR)[0])
             [p, p.inner_html]
           else
             [li, li.inner_html]
           end
-        if match = (inner.chomp =~ ItemPattern && $1)
-          item = HTML::Pipeline::TaskList::Item.new(match, inner)
-          # prepend because we're iterating in reverse
-          task_list_items.unshift item
+        next unless (match = (inner.chomp =~ ITEM_PATTERN && Regexp.last_match(1)))
 
-          add_css_class(li, 'task-list-item')
-          outer.inner_html = render_task_list_item(item)
-        end
+        item = HTML::Pipeline::TaskList::Item.new(match, inner)
+        # prepend because we're iterating in reverse
+        task_list_items.unshift item
+
+        add_css_class(li, 'task-list-item')
+        outer.inner_html = render_task_list_item(item)
       end
     end
 
@@ -140,6 +139,7 @@ class HTML::Pipeline::TaskList
     def add_css_class(node, *new_class_names)
       class_names = (node['class'] || '').split(' ')
       return if new_class_names.all? { |klass| class_names.include?(klass) }
+
       class_names.concat(new_class_names)
       node['class'] = class_names.uniq.join(' ')
     end

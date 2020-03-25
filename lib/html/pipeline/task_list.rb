@@ -21,8 +21,8 @@ class HTML::Pipeline::TaskList
     @summary ||= HTML::Pipeline::TaskList::Summary.new(record.task_list_items)
   end
 
-  class Item < Struct.new(:checkbox_text, :source)
-    Complete = /\[[xX]\]/.freeze # see TaskList::Filter
+  Item = Struct.new(:checkbox_text, :source) do
+    COMPLETE = /\[[xX]\]/.freeze # see TaskList::Filter
 
     # Public: Check if a task list is complete.
     #
@@ -36,7 +36,7 @@ class HTML::Pipeline::TaskList
     #
     # Returns true for checked list, false otherwise
     def complete?
-      !!(checkbox_text =~ Complete)
+      checkbox_text =~ COMPLETE
     end
   end
 end
