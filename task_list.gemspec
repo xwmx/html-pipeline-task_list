@@ -25,4 +25,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "sprockets"
   gem.add_development_dependency "minitest", "~> 5.3.2"
   gem.add_development_dependency 'commonmarker'
+  gem.add_development_dependency 'rubocop'
 end
