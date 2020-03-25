@@ -140,6 +140,18 @@ class HTML::Pipeline::TaskList::FilterTest < Minitest::Test
     assert_equal 2, filter(text)[:output].css('[checked]').size
   end
 
+  def test_skips_task_list_when_no_content
+    text = <<~MARKDOWN
+      - [x]
+      - [X]
+    MARKDOWN
+
+    result = filter(text)
+    assert_nil result[:task_list_items]
+    assert result[:output].css(@item_selector).empty?,
+           'should not have any task list items'
+  end
+
   protected
 
   def filter(input, context = @context, result = nil)

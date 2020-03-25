@@ -51,7 +51,7 @@ class HTML::Pipeline::TaskList
 
     class XPathSelectorFunction
       def self.task_list_item(nodes)
-        nodes if nodes.text =~ ITEM_PATTERN
+        nodes.find_all { |x| x.text =~ ITEM_PATTERN }
       end
     end
 
