@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'html/pipeline/task_list/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = 'task_list'
+  gem.name          = 'html-pipeline-task_list'
   gem.version       = TaskList::VERSION
   gem.authors       = ['Codetree']
   gem.email         = ['support@codetree.com']

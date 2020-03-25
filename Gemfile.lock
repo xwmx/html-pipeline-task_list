@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    task_list (0.0.1)
+    html-pipeline-task_list (0.0.1)
       html-pipeline
 
 GEM
@@ -68,13 +68,13 @@ DEPENDENCIES
   coffee-script
   commonmarker
   github-markdown
+  html-pipeline-task_list!
   json
   minitest (~> 5.3.2)
   rack
   rake
   rubocop
   sprockets
-  task_list!
 
 BUNDLED WITH
    2.1.4
