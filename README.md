@@ -1,8 +1,10 @@
 # Task Lists
 
-This package provides various components necessary for integrating
+This Gem provides various components necessary for integrating
 [Task Lists](https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments)
 into your GitHub-flavored-Markdown user content.
+
+`HTML::Pipeline::TaskList` is a successor to [TaskList](https://github.com/github/task_list) which GitHub stopped supporting and updating in 2016.  This gem updates key components to support changes to underlying gems.
 
 ## Components
 

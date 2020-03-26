@@ -4,14 +4,15 @@ require 'html/pipeline/task_list/version'
 
 Gem::Specification.new do |gem|
   gem.name          = 'html-pipeline-task_list'
-  gem.version       = TaskList::VERSION
+  gem.version       = ::HTML::Pipeline::TaskList::VERSION
   gem.authors       = ['Codetree']
   gem.email         = ['support@codetree.com']
-  gem.description   = 'GitHub-flavored-Markdown TaskList components'
-  gem.summary       = 'GitHub-flavored-Markdown TaskList components'
-
+  gem.homepage      = 'https://github.com/codetree/html-pipeline-task_list'
+  gem.summary       = 'An HTML::Pipeline filter for GitHub-flavored Markdown TaskList components'
+  gem.description   = gem.summary
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
+  gem.license       = 'MIT'
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
