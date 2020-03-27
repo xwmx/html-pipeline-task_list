@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'html/pipeline/task_list/version'
@@ -9,10 +11,13 @@ Gem::Specification.new do |gem|
   gem.authors       = ['Codetree']
   gem.email         = ['support@codetree.com']
   gem.homepage      = 'https://github.com/codetree/html-pipeline-task_list'
-  gem.summary       = 'An HTML::Pipeline filter for GitHub-flavored Markdown TaskList components'
+  gem.summary       = 'An HTML::Pipeline filter for creating GitHub-flavored Markdown TaskLists'
   gem.description   = gem.summary
 
-  gem.files         = `git ls-files -z`.split("\x0").reject { |f| f =~ %r{^(test|script|gemfiles)/ } }
+  gem.files = `git ls-files -z`.split("\x0").reject do |f|
+    f =~ %r{^(test|script|gemfiles)/ }
+  end
+
   gem.require_paths = ['lib']
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
@@ -23,10 +28,10 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'coffee-script', '~> 2.4'
   gem.add_development_dependency 'commonmarker', '~> 0.21.0'
   gem.add_development_dependency 'github-markdown', '~> 0.6.9'
-  gem.add_development_dependency 'json', '~> 2.3'
   gem.add_development_dependency 'guard', '~> 2.16'
   gem.add_development_dependency 'guard-minitest', '~> 2.4'
   gem.add_development_dependency 'guard-rubocop', '~> 1.3'
+  gem.add_development_dependency 'json', '~> 2.3'
   gem.add_development_dependency 'minitest', '~> 5.14'
   gem.add_development_dependency 'rack', '~> 2.2'
   gem.add_development_dependency 'rake', '~> 13.0'

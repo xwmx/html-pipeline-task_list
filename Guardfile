@@ -16,7 +16,7 @@ group :rails, halt_on_fail: true do
   guard :minitest, minitest_opts do
     directories %w[test lib]
     watch %r{^test/(.+)_test\.rb$}
-    watch(%r{^lib/(.+)\.rb$})       { |m| "test/lib/#{m[1]}_test.rb" }
+    watch(%r{^lib/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
   end
 
   guard :rubocop, rubocop_opts do

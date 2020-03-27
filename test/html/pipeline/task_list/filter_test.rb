@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path('../../../test_helper', __dir__)
 require 'html/pipeline/task_list/filter'
 
@@ -105,8 +107,10 @@ class HTML::Pipeline::TaskList::FilterTest < Minitest::Test
       - [ ] three
     MARKDOWN
 
-    assert_equal 6 + 2, filter(text)[:output].css('.task-list-item .task-list-item').size
-    assert_equal 2, filter(text)[:output].css('.task-list-item .task-list-item .task-list-item').size
+    output = filter(text)[:output]
+
+    assert_equal 6 + 2, output.css('.task-list-item .task-list-item').size
+    assert_equal 2, output.css('.task-list-item .task-list-item .task-list-item').size
   end
 
   # NOTE: This is an edge case experienced regularly by users using a Swiss

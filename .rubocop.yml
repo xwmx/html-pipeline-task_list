@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
   TargetRubyVersion: 2.4
   Exclude:
@@ -7,12 +5,35 @@ AllCops:
     - 'vendor/**/*'
     - 'config.ru'
 
+Layout/LineLength:
+  Max: 100
+
 Layout/ParameterAlignment:
   Exclude:
     - 'bin/**/*'
 
+Metrics/AbcSize:
+  Max: 20
+
 Metrics/BlockLength:
   Max: 30
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'test/**/*.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'test/**/*.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'test/**/*'
 
 Style/HashEachMethods:
   Enabled: true
