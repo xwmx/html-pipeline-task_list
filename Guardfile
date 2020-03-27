@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rspec configuration
 minitest_opts = {
   cmd: 'rake test',
