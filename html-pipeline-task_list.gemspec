@@ -11,10 +11,13 @@ Gem::Specification.new do |gem|
   gem.authors       = ['Codetree']
   gem.email         = ['support@codetree.com']
   gem.homepage      = 'https://github.com/codetree/html-pipeline-task_list'
-  gem.summary       = 'An HTML::Pipeline filter for GitHub-flavored Markdown TaskList components'
+  gem.summary       = 'An HTML::Pipeline filter for creating GitHub-flavored Markdown TaskLists'
   gem.description   = gem.summary
 
-  gem.files         = `git ls-files -z`.split("\x0").reject { |f| f =~ %r{^(test|script|gemfiles)/ } }
+  gem.files = `git ls-files -z`.split("\x0").reject do |f|
+    f =~ %r{^(test|script|gemfiles)/ }
+  end
+
   gem.require_paths = ['lib']
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})

@@ -5,6 +5,8 @@ require 'html/pipeline/task_list/summary'
 
 module HTML
   class Pipeline
+    # Generates task lists (e.g., checkboxes) from Github falvored
+    # markdown.  See ./filter.rb for more details
     class TaskList
       attr_reader :record
 

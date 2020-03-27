@@ -4,6 +4,22 @@ require 'html/pipeline'
 
 module HTML
   class Pipeline
+    # Generates task lists (e.g., checkboxes) from GitHub flavored
+    # markdown.  Requires processing by Markdown filter and therefore
+    # must follow HTML::Pipeline::MarkdownFilter in the pipeline
+    #
+    # Usage:
+    #
+    #   require 'html/pipeline'
+    #   require 'html/pipeline/task_list/filter'
+    #
+    #   pipeline = HTML::Pipeline.new [
+    #     HTML::Pipeline::MarkdownFilter,
+    #     HTML::Pipeline::TaskList::Filter
+    #   ]
+    #
+    #   pipeline.call "- [ ] task list item"
+    #
     class TaskList
       # Returns a `Nokogiri::DocumentFragment` object.
       def self.filter(*args)
@@ -53,6 +69,8 @@ module HTML
 
         LIST_ITEM_SELECTOR = './/li[task_list_item(.)]'
 
+        # Underlying XPath Selector for identifying items matching
+        # the ITEM_PATTERN
         class XPathSelectorFunction
           def self.task_list_item(nodes)
             nodes.find_all { |x| x.text =~ ITEM_PATTERN }
@@ -116,12 +134,8 @@ module HTML
           list_items.reverse.each do |li|
             add_css_class(li.parent, 'task-list')
 
-            outer, inner =
-              if (p = li.xpath(ITEM_PARA_SELECTOR)[0])
-                [p, p.inner_html]
-              else
-                [li, li.inner_html]
-              end
+            outer, inner = item_selector(li)
+
             unless (match = (inner.chomp =~ ITEM_PATTERN && Regexp.last_match(1)))
               next
             end
@@ -148,6 +162,16 @@ module HTML
 
           class_names.concat(new_class_names)
           node['class'] = class_names.uniq.join(' ')
+        end
+
+        private
+
+        def item_selector(item)
+          if (p = item.xpath(ITEM_PARA_SELECTOR)[0])
+            [p, p.inner_html]
+          else
+            [item, item.inner_html]
+          end
         end
       end
     end

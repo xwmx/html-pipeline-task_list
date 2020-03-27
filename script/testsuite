@@ -12,7 +12,11 @@ pid = fork do
 end
 sleep 1
 
-status = system('phantomjs', "#{root}/test/run-qunit.coffee", "http://localhost:#{port}/test/index.html")
+status = system(
+  'phantomjs',
+  "#{root}/test/run-qunit.coffee",
+  "http://localhost:#{port}/test/index.html"
+)
 
 Process.kill 'SIGINT', pid
 Process.wait pid
