@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'html/pipeline'
 require 'html/pipeline/task_list/summary'
 

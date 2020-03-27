@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'html/pipeline'
 
 module HTML
@@ -30,8 +32,8 @@ module HTML
       # The following keys are written to the result hash:
       #   :task_list_items - An array of TaskList::Item objects.
       class Filter < HTML::Pipeline::Filter
-        INCOMPLETE = '[ ]'.freeze
-        COMPLETE   = '[x]'.freeze
+        INCOMPLETE = '[ ]'
+        COMPLETE   = '[x]'
 
         INCOMPLETE_PATTERN = /\[[[:space:]]\]/.freeze # matches all whitespace
         COMPLETE_PATTERN   = /\[[xX]\]/.freeze        # matches any capitalization
@@ -49,7 +51,7 @@ module HTML
           (?=\s)                  # followed by whitespace
         /x.freeze
 
-        LIST_ITEM_SELECTOR = './/li[task_list_item(.)]'.freeze
+        LIST_ITEM_SELECTOR = './/li[task_list_item(.)]'
 
         class XPathSelectorFunction
           def self.task_list_item(nodes)
@@ -58,7 +60,7 @@ module HTML
         end
 
         # Selects first P tag of an LI, if present
-        ITEM_PARA_SELECTOR = './p[1]'.freeze
+        ITEM_PARA_SELECTOR = './p[1]'
 
         # List of `TaskList::Item` objects that were recognized in the document.
         # This is available in the result hash as `:task_list_items`.
@@ -120,7 +122,9 @@ module HTML
               else
                 [li, li.inner_html]
               end
-            next unless (match = (inner.chomp =~ ITEM_PATTERN && Regexp.last_match(1)))
+            unless (match = (inner.chomp =~ ITEM_PATTERN && Regexp.last_match(1)))
+              next
+            end
 
             item = HTML::Pipeline::TaskList::Item.new(match, inner)
             # prepend because we're iterating in reverse

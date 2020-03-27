@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'html/pipeline/task_list/version'
@@ -23,10 +25,10 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'coffee-script', '~> 2.4'
   gem.add_development_dependency 'commonmarker', '~> 0.21.0'
   gem.add_development_dependency 'github-markdown', '~> 0.6.9'
-  gem.add_development_dependency 'json', '~> 2.3'
   gem.add_development_dependency 'guard', '~> 2.16'
   gem.add_development_dependency 'guard-minitest', '~> 2.4'
   gem.add_development_dependency 'guard-rubocop', '~> 1.3'
+  gem.add_development_dependency 'json', '~> 2.3'
   gem.add_development_dependency 'minitest', '~> 5.14'
   gem.add_development_dependency 'rack', '~> 2.2'
   gem.add_development_dependency 'rake', '~> 13.0'
