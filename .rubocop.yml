@@ -1,5 +1,19 @@
 inherit_from: .rubocop_todo.yml
 
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'config.ru'
+
+Layout/ParameterAlignment:
+  Exclude:
+    - 'bin/**/*'
+
+Metrics/BlockLength:
+  Max: 30
+
 Style/HashEachMethods:
   Enabled: true
 

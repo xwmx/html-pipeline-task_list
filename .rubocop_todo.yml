@@ -7,6 +7,25 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: TreatCommentsAsGroupSeparators, Include.
+# Include: **/*.gemspec
+Gemspec/OrderedDependencies:
+  Exclude:
+    - 'html-pipeline-task_list.gemspec'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
+Layout/ExtraSpacing:
+  Exclude:
+    - 'Guardfile'
+
+# Offense count: 1
+Metrics/AbcSize:
+  Max: 19
+
+# Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
   Max: 120
@@ -14,33 +33,51 @@ Metrics/ClassLength:
 # Offense count: 3
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
-  Max: 80
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 120
+  Max: 15
 
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle.
 # SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Exclude:
+    - 'lib/html/pipeline/task_list.rb'
+    - 'lib/html/pipeline/task_list/filter.rb'
+    - 'lib/html/pipeline/task_list/railtie.rb'
+    - 'lib/html/pipeline/task_list/summary.rb'
+    - 'test/html/pipeline/task_list/filter_test.rb'
+    - 'test/html/pipeline/task_list/summary_test.rb'
 
-# Offense count: 14
+# Offense count: 5
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'lib/html/pipeline/task_list.rb'
+    - 'lib/html/pipeline/task_list/filter.rb'
+    - 'lib/html/pipeline/task_list/railtie.rb'
+
+# Offense count: 15
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: always, always_true, never
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Exclude:
+    - 'html-pipeline-task_list.gemspec'
+    - 'lib/html/pipeline/task_list.rb'
+    - 'lib/html/pipeline/task_list/filter.rb'
+    - 'lib/html/pipeline/task_list/railtie.rb'
+    - 'lib/html/pipeline/task_list/summary.rb'
+    - 'lib/html/pipeline/task_list/version.rb'
+    - 'script/testsuite'
+    - 'test/html/pipeline/task_list/filter_test.rb'
+    - 'test/html/pipeline/task_list/summary_test.rb'
+    - 'test/html/pipeline/task_list_test.rb'
+    - 'test/test_helper.rb'
 
-# Offense count: 6
-Style/Documentation:
-  Enabled: false
-
-# Offense count: 1
-Metrics/AbcSize:
-  Max: 40
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  Max: 105
