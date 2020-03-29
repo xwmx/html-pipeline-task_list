@@ -25,7 +25,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'html-pipeline', '~> 2.12'
 
   gem.add_development_dependency 'bundler', '~> 2.1', '>=2.1.4'
-  gem.add_development_dependency 'coffee-script', '~> 2.4'
   gem.add_development_dependency 'commonmarker', '~> 0.21.0'
   gem.add_development_dependency 'github-markdown', '~> 0.6.9'
   gem.add_development_dependency 'guard', '~> 2.16'

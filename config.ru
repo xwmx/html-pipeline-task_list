@@ -1,6 +1,5 @@
 # Rack environment for testing purposes
 
-require 'coffee-script'
 require 'json'
 require 'sprockets'
 

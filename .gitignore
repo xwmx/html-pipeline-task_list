@@ -1,13 +1,15 @@
 /.bundle/
 /.yardoc
-/Gemfile.lock
+Gemfile.lock
 /_yardoc/
+/bin/
 /coverage/
 /doc/
 /pkg/
 /spec/reports/
 /tmp/
 /node_modules/
+/public/
 /vendor/
-/bin/
+.DS_Store
 *.gem
