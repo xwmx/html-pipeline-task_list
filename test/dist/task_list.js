@@ -1,0 +1,1 @@
+../../app/assets/javascripts/task_list.js
