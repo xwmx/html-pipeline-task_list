@@ -1,8 +1,7 @@
 // ./test/unit/test_events.js
 
-(function() {
-    module("TaskList events", {
-      setup: function() {
+    QUnit.module("TaskList events", {
+      beforeEach: function() {
         this.container = $('<div>', {
           "class": 'js-task-list-container'
         });
@@ -28,78 +27,81 @@
         $('#qunit-fixture').append(this.container);
         return this.container.taskList();
       },
-      teardown: function() {
+      afterEach: function() {
         $(document).off('tasklist:enabled');
         $(document).off('tasklist:disabled');
         $(document).off('tasklist:change');
         return $(document).off('tasklist:changed');
       }
     });
-  
-    asyncTest("triggers a tasklist:change event before making task list item changes", function() {
-      expect(1);
+
+    QUnit.test("triggers a tasklist:change event before making task list item changes", function( assert ) {
+      var done = assert.async();
+      assert.expect(1);
       this.field.on('tasklist:change', function(event, index, checked) {
-        return ok(true);
+        return assert.ok(true);
       });
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.checkbox.click();
     });
-  
-    asyncTest("triggers a tasklist:changed event once a task list item changes", function() {
-      expect(1);
+
+    QUnit.test("triggers a tasklist:changed event once a task list item changes", function( assert ) {
+      var done = assert.async();
+      assert.expect(1);
       this.field.on('tasklist:changed', function(event, index, checked) {
-        return ok(true);
+        return assert.ok(true);
       });
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.checkbox.click();
     });
-  
-    asyncTest("can cancel a tasklist:changed event", function() {
-      var before;
-      expect(2);
+
+    QUnit.test("can cancel a tasklist:changed event", function( assert ) {
+      var initial;
+      var done = assert.async();
+      assert.expect(2);
       this.field.on('tasklist:change', function(event, index, checked) {
-        ok(true);
+        assert.ok(true);
         return event.preventDefault();
       });
       this.field.on('tasklist:changed', function(event, index, checked) {
-        return ok(false);
+        return assert.ok(false);
       });
-      before = this.checkbox.val();
+      initial = this.checkbox.val();
       setTimeout((function(_this) {
         return function() {
-          equal(before, _this.checkbox.val());
-          return start();
+          assert.equal(initial, _this.checkbox.val());
+          done();
         };
       })(this), 20);
       return this.checkbox.click();
     });
-  
-    asyncTest("enables task list items when a .js-task-list-field is present", function() {
-      expect(1);
+
+    QUnit.test("enables task list items when a .js-task-list-field is present", function( assert ) {
+      var done = assert.async();
+      assert.expect(1);
       $(document).on('tasklist:enabled', function(event) {
-        return ok(true);
+        return assert.ok(true);
       });
       this.container.taskList();
       return setTimeout(function() {
-        return start();
+        done();
       }, 20);
     });
-  
-    asyncTest("doesn't enable task list items when a .js-task-list-field is absent", function() {
-      expect(0);
+
+    QUnit.test("doesn't enable task list items when a .js-task-list-field is absent", function( assert ) {
+      var done = assert.async();
+      assert.expect(0);
       $(document).on('tasklist:enabled', function(event) {
-        return ok(true);
+        return assert.ok(true);
       });
       this.field.remove();
       this.container.taskList();
       return setTimeout(function() {
-        return start();
+        done();
       }, 20);
     });
-  
-  }).call(this);
-  
+

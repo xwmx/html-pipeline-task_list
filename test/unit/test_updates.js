@@ -1,8 +1,7 @@
 // ./test/unit/test_updates.js
 
-(function() {
-    module("TaskList updates", {
-      setup: function() {
+    QUnit.module("TaskList updates", {
+      beforeEach: function() {
         this.container = $('<div>', {
           "class": 'js-task-list-container'
         });
@@ -156,149 +155,159 @@
         $('#qunit-fixture').append(this.container);
         return this.container.taskList();
       },
-      teardown: function() {
+      afterEach: function() {
         return $(document).off('tasklist:changed');
       }
     });
-  
-    asyncTest("updates the source, marking the incomplete item as complete", function() {
-      expect(3);
+
+    QUnit.test("updates the source, marking the incomplete item as complete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, _this.incompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toIncomplete);
+          assert.ok(checked);
+          assert.equal(index, _this.incompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toIncomplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.incompleteCheckbox.click();
     });
-  
-    asyncTest("updates the source, marking the complete item as incomplete", function() {
-      expect(3);
+
+    QUnit.test("updates the source, marking the complete item as incomplete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(!checked);
-          equal(index, _this.completeItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toComplete);
+          assert.ok(!checked);
+          assert.equal(index, _this.completeItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toComplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.completeCheckbox.click();
     });
-  
-    asyncTest("updates the source for items with non-breaking spaces", function() {
-      expect(3);
+
+    QUnit.test("updates the source for items with non-breaking spaces", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, _this.incompleteNBSPItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toIncompleteNBSP);
+          assert.ok(checked);
+          assert.equal(index, _this.incompleteNBSPItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toIncompleteNBSP);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.incompleteNBSPCheckbox.click();
     });
-  
-    asyncTest("updates the source of a quoted item, marking the incomplete item as complete", function() {
-      expect(3);
+
+    QUnit.test("updates the source of a quoted item, marking the incomplete item as complete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, _this.quotedIncompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toQuotedIncomplete);
+          assert.ok(checked);
+          assert.equal(index, _this.quotedIncompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toQuotedIncomplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.quotedIncompleteCheckbox.click();
     });
-  
-    asyncTest("updates the source of a quoted item, marking the complete item as incomplete", function() {
-      expect(3);
+
+    QUnit.test("updates the source of a quoted item, marking the complete item as incomplete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(!checked);
-          equal(index, _this.quotedCompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toQuotedComplete);
+          assert.ok(!checked);
+          assert.equal(index, _this.quotedCompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toQuotedComplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.quotedCompleteCheckbox.click();
     });
-  
-    asyncTest("updates the source of a quoted quoted item, marking the incomplete item as complete", function() {
-      expect(3);
+
+    QUnit.test("updates the source of a quoted quoted item, marking the incomplete item as complete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, _this.innerIncompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toInnerIncomplete);
+          assert.ok(checked);
+          assert.equal(index, _this.innerIncompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toInnerIncomplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.innerIncompleteCheckbox.click();
     });
-  
-    asyncTest("updates the source of a quoted quoted item, marking the complete item as incomplete", function() {
-      expect(3);
+
+    QUnit.test("updates the source of a quoted quoted item, marking the complete item as incomplete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(!checked);
-          equal(index, _this.innerCompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toInnerComplete);
+          assert.ok(!checked);
+          assert.equal(index, _this.innerCompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toInnerComplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.innerCompleteCheckbox.click();
     });
-  
-    asyncTest("updates the source of an ordered list item, marking the incomplete item as complete", function() {
-      expect(3);
+
+    QUnit.test("updates the source of an ordered list item, marking the incomplete item as complete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, _this.orderedIncompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toOrderedIncomplete);
+          assert.ok(checked);
+          assert.equal(index, _this.orderedIncompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toOrderedIncomplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.orderedIncompleteCheckbox.click();
     });
-  
-    asyncTest("updates the source of an ordered list item, marking the complete item as incomplete", function() {
-      expect(3);
+
+    QUnit.test("updates the source of an ordered list item, marking the complete item as incomplete", function( assert ) {
+      var done = assert.async();
+      assert.expect(3);
       this.field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(!checked);
-          equal(index, _this.orderedCompleteItem.expectedIndex);
-          return equal(_this.field.val(), _this.changes.toOrderedComplete);
+          assert.ok(!checked);
+          assert.equal(index, _this.orderedCompleteItem.expectedIndex);
+          return assert.equal(_this.field.val(), _this.changes.toOrderedComplete);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return this.orderedCompleteCheckbox.click();
     });
-  
-    asyncTest("update ignores items that look like Task List items but lack list prefix", function() {
+
+    QUnit.test("update ignores items that look like Task List items but lack list prefix", function( assert ) {
+      var done = assert.async();
       var changes, container, field, item1, item1Checkbox, item2, item2Checkbox, list;
-      expect(3);
+      assert.expect(3);
       $('#qunit-fixture').empty();
       container = $('<div>', {
         "class": 'js-task-list-container'
@@ -341,20 +350,21 @@
       container.taskList();
       field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, item2.expectedIndex);
-          return equal(field.val(), changes);
+          assert.ok(checked);
+          assert.equal(index, item2.expectedIndex);
+          return assert.equal(field.val(), changes);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return item2Checkbox.click();
     });
-  
-    asyncTest("update ignores items that look like Task List items but are links", function() {
+
+    QUnit.test("update ignores items that look like Task List items but are links", function( assert ) {
+      var done = assert.async();
       var changes, container, field, item1, item1Checkbox, item2, item2Checkbox, list;
-      expect(3);
+      assert.expect(3);
       $('#qunit-fixture').empty();
       container = $('<div>', {
         "class": 'js-task-list-container'
@@ -397,20 +407,21 @@
       container.taskList();
       field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, item2.expectedIndex);
-          return equal(field.val(), changes);
+          assert.ok(checked);
+          assert.equal(index, item2.expectedIndex);
+          return assert.equal(field.val(), changes);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return item2Checkbox.click();
     });
-  
-    asyncTest("updates items followed by links", function() {
+
+    QUnit.test("updates items followed by links", function( assert ) {
+      var done = assert.async();
       var changes, container, field, item1, item1Checkbox, item2, item2Checkbox, list;
-      expect(3);
+      assert.expect(3);
       $('#qunit-fixture').empty();
       container = $('<div>', {
         "class": 'js-task-list-container'
@@ -453,16 +464,13 @@
       container.taskList();
       field.on('tasklist:changed', (function(_this) {
         return function(event, index, checked) {
-          ok(checked);
-          equal(index, item2.expectedIndex);
-          return equal(field.val(), changes);
+          assert.ok(checked);
+          assert.equal(index, item2.expectedIndex);
+          return assert.equal(field.val(), changes);
         };
       })(this));
       setTimeout(function() {
-        return start();
+        done();
       }, 20);
       return item2Checkbox.click();
     });
-  
-  }).call(this);
-  
