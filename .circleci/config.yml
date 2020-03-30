@@ -10,7 +10,7 @@ jobs:
     working_directory: ~/repos/html-pipeline-task_list
 
     docker:
-      - image: circleci/ruby:2.6.4-buster-node-browsers-legacy
+      - image: circleci/ruby:2.6.4-buster-node-browsers
         environment:
           <<: *environment
 
@@ -51,16 +51,8 @@ jobs:
           command: bundle exec rake test
 
       - run:
-          name: stand-up rack-app for javascript tests
-          command: bundle exec rackup --daemonize --port ${TEST_PORT}
-          background: true
-
-      - run:
-          name: wait for rackup server to finish loading
-          command: RESPONSE=1; while [ $RESPONSE -ne 200 ]; do echo "waiting on ${TEST_HOST}; Last RESPONSE=${RESPONSE}"; sleep 3; RESPONSE=$(curl --write-out "%{http_code}\n" --silent --output /dev/null "${TEST_HOST}/update"); done;
-      - run:
           name: run javascript unit tests
-          command: npm test -- $TEST_HOST/test/qunit.html
+          command: npm test
 
       - store_test_results:
           path: test_results

@@ -32,7 +32,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-rubocop', '~> 1.3'
   gem.add_development_dependency 'json', '~> 2.3'
   gem.add_development_dependency 'minitest', '~> 5.14'
-  gem.add_development_dependency 'rack', '~> 2.2'
   gem.add_development_dependency 'rake', '~> 13.0'
   gem.add_development_dependency 'rubocop', '~> 0.80.1'
 end

@@ -85,12 +85,12 @@ And then execute `bundle install`
 before beginning testing and development, be sure to run `bundle install && npm install`
 
 Ruby unit tests can be run with `rake test`.
-Javascript unit tests can be run with `script/testsuite`
+Javascript unit tests can be run with `npm test`
 
 Functional tests can be run manually in the browser.  To do so:
-1. run `bundle exec rackup -p 4011`
+1. run `npm run server`
 2. open a browser to http://localhost:4011/test/behavior.html
-3. you can see the qunit tests at http://localhost:4011/test/qunit.html
+3. you can also see the QUnit tests at http://localhost:4011/test/qunit.html
 
 ## Contributing
 
