@@ -148,12 +148,44 @@ class HTML::Pipeline::TaskList::FilterTest < Minitest::Test
     text = <<~MARKDOWN
       - [x]
       - [X]
+      - [ ]
     MARKDOWN
 
     result = filter(text)
     assert_nil result[:task_list_items]
     assert result[:output].css(@item_selector).empty?,
            'should not have any task list items'
+  end
+
+  def test_handles_input_with_a_mix_of_lists_and_task_lists
+    text = <<~MARKDOWN
+      - Item 1
+      - Item 2
+
+      - [x] Task 1
+      - [ ] Task 2
+    MARKDOWN
+
+    result = filter(text)
+
+    output = result[:output].to_s
+    complete, incomplete = result[:task_list_items]
+    assert complete.complete?
+    refute incomplete.complete?
+
+    # regular list items
+    assert_match %r{<li>\n<p>Item 1</p>\n</li>}, output
+    assert_match %r{<li>\n<p>Item 2</p>\n</li>}, output
+
+    # task list items
+    assert_match(
+      %r{<p><input type="checkbox" class="task-list-item-checkbox" checked disabled> Task 1</p>},
+      output
+    )
+    assert_match(
+      %r{<p><input type="checkbox" class="task-list-item-checkbox" disabled> Task 2</p>},
+      output
+    )
   end
 
   protected
