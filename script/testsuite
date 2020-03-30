@@ -13,9 +13,7 @@ end
 sleep 1
 
 status = system(
-  'phantomjs',
-  "#{root}/test/run-qunit.coffee",
-  "http://localhost:#{port}/test/index.html"
+  "npm test -- http://localhost:#{port}/test/qunit.html"
 )
 
 Process.kill 'SIGINT', pid

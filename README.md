@@ -77,24 +77,20 @@ Read through the documented behaviors and samples [in the source][frontend_behav
 
 For the backend Ruby components, add this line to your application's Gemfile:
 
-    gem 'html-pipeline-task_list'
+    gem 'html-pipeline-task_list', '~> 0.0'
 
-And then execute:
-
-    $ bundle
+And then execute `bundle install`
 
 ## Testing and Development
+before beginning testing and development, be sure to run `bundle install && npm install`
 
 Ruby unit tests can be run with `rake test`.
+Javascript unit tests can be run with `script/testsuite`
 
-Functional tests are useful for manual testing in the browser. To run, install
-the necessary components with `script/bootstrap` then run the server:
-
-```
-rackup -p 4011
-```
-
-Navigate to http://localhost:4011/test/functional/test_task_lists_behavior.html
+Functional tests can be run manually in the browser.  To do so:
+1. run `bundle exec rackup -p 4011`
+2. open a browser to http://localhost:4011/test/behavior.html
+3. you can see the qunit tests at http://localhost:4011/test/qunit.html
 
 ## Contributing
 

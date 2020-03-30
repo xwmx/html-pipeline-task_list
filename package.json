@@ -10,7 +10,12 @@
   },
   "devDependencies": {
     "jquery-ujs": "^1.2.2",
-    "qunit": "^2.9.3"
+    "phantomjs-prebuilt": "2.1.16",
+    "qunit": "^2.9.3",
+    "qunit-phantomjs-runner": "^2.4.1"
+  },
+  "scripts": {
+    "test": "phantomjs ./test/run-qunit.js"
   },
   "main": [
     "app/assets/javascripts/task_list.js",
