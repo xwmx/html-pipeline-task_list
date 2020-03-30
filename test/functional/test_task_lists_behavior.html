@@ -18,7 +18,7 @@
     $(document).on('tasklist:disabled', logEvent)
     $(document).on('tasklist:change', '.js-task-list-field', function(event){
       logEvent(event)
-      $(this).closest('.js-task-list-container').taskList('disable')
+      $(this).closest('.js-task-list-container').taskList('enable')
     })
     $(document).on('tasklist:changed', '.js-task-list-field', function(event){
       logEvent(event)
@@ -26,7 +26,9 @@
     })
 
     $(document).on('ajaxStart', logEvent)
-    $(document).on('ajaxSuccess', '.js-task-list-container', function(event){
+    $(document).on('ajaxError', logEvent)
+    $(document).on('ajaxComplete', logEvent)
+    $(document).on('ajaxSuccess', function(event){
       logEvent(event)
       $(this).taskList()
     })
@@ -67,28 +69,28 @@
   </style>
 </head>
 <body>
-  <div class="js-task-list-container js-task-list-enable">
+  <div class="js-task-list-container is-task-list-enabled">
     <div class="markdown">
       <ul class="task-list">
-        <li class="task-list-item">
-          <input type="checkbox" class="task-list-item-checkbox" disabled />
+        <li class="task-list-item enabled">
+          <input type="checkbox" class="task-list-item-checkbox" enabled />
           I'm a task list item
         </li>
-        <li class="task-list-item">
-          <input type="checkbox" class="task-list-item-checkbox" disabled />
+        <li class="task-list-item enabled">
+          <input type="checkbox" class="task-list-item-checkbox" enabled />
           with non-breaking space
         </li>
-        <li class="task-list-item">
-          <input type="checkbox" class="task-list-item-checkbox" disabled checked />
+        <li class="task-list-item enabled">
+          <input type="checkbox" class="task-list-item-checkbox" enabled checked />
           completed, lower
         </li>
-        <li class="task-list-item">
-          <input type="checkbox" class="task-list-item-checkbox" disabled checked />
+        <li class="task-list-item enabled">
+          <input type="checkbox" class="task-list-item-checkbox" enabled checked />
           completed capitalized
         </li>
       </ul>
     </div>
-    <form action="/update" method="POST" data-remote data-type="json">
+    <form action="/update" method="POST" data-remote="true" data-type="json">
       <textarea name="comment[body]" class="js-task-list-field" cols="40" rows="10">
 - [ ] I'm a task list item
 - [ ] with non-breaking space
@@ -101,3 +103,4 @@
   </ul>
 </body>
 </html>
+
