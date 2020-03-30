@@ -2,15 +2,18 @@
   "name": "task_list",
   "version": "1.0.2",
   "description": "GitHub-flavored-Markdown TaskList components",
-  "homepage": "https://github.com/github/task_list",
+  "homepage": "https://github.com/codetre/html-pipeline-task_list",
+  "repository": "https://github.com/codetre/html-pipeline-task_list",
+  "license": "MIT",
   "dependencies": {
-    "jquery": ">= 1.9.1"
+    "jquery": "1.12.4"
   },
   "devDependencies": {
-    "qunit": ">= 1.0"
+    "jquery-ujs": "^1.2.2",
+    "qunit": "^2.9.3"
   },
   "main": [
-    "app/assets/javascripts/task_list.coffee",
+    "app/assets/javascripts/task_list.js",
     "app/assets/stylesheets/task_list.scss"
   ],
   "ignore": [

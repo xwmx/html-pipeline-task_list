@@ -6,11 +6,16 @@ require 'sprockets'
 Root = File.expand_path(__dir__)
 
 Assets = Sprockets::Environment.new(Root) do |env|
-  env.append_path 'bower_components'
+  env.append_path 'node_modules'
   env.append_path 'app/assets/javascripts'
   env.append_path 'app/assets/stylesheets'
   env.append_path 'test'
 end
+
+# compile and output files
+# manifest = Sprockets::Manifest.new(Assets, './public')
+# manifest.compile('units.js')
+# manifest.compile('run-qunit.js')
 
 map '/assets' do
   run Assets
