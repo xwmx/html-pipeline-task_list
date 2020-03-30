@@ -1,0 +1,36 @@
+{
+  "name": "task_list",
+  "version": "1.0.2",
+  "description": "GitHub-flavored-Markdown TaskList components",
+  "homepage": "https://github.com/codetre/html-pipeline-task_list",
+  "repository": "https://github.com/codetre/html-pipeline-task_list",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^1.12.4"
+  },
+  "devDependencies": {
+    "jquery-ujs": "^1.2.2",
+    "node-qunit-puppeteer": "^2.0.1",
+    "qunit": "^2.9.3"
+  },
+  "scripts": {
+    "server": "node ./test/server.js .",
+    "test": "node-qunit-puppeteer ./test/qunit.html 10000 --no-sandbox"
+  },
+  "main": [
+    "app/assets/javascripts/task_list.js",
+    "app/assets/stylesheets/task_list.scss"
+  ],
+  "ignore": [
+    ".gitignore",
+    ".travis.yml",
+    "*.gemspec",
+    "*.md",
+    "config.ru",
+    "Gemfile",
+    "lib/",
+    "Rakefile",
+    "script/",
+    "test/"
+  ]
+}

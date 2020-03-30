@@ -1,6 +1,0 @@
-#!/bin/sh -e
-# Usage: script/cibuild
-# CI build script.
-
-./script/testsuite 4018
-bundle exec rake test

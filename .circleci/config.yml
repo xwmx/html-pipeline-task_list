@@ -2,13 +2,15 @@ version: 2.1
 
 environment: &environment
   LOG_LEVEL: WARN
+  TEST_PORT: 3000
+  TEST_HOST: http://localhost:3000
 
 jobs:
   functional_tests:
     working_directory: ~/repos/html-pipeline-task_list
 
     docker:
-      - image: circleci/ruby:2.6.4-buster-node
+      - image: circleci/ruby:2.6.4-buster-node-browsers
         environment:
           <<: *environment
 
@@ -27,21 +29,30 @@ jobs:
 
       - restore_cache:
           keys:
-            - html-pipeline-task_list-bundle-v2-{{ checksum "html-pipeline-task_list.gemspec" }}
-            - html-pipeline-task_list-bundle-v2-
+            - html-pipeline-task_list-cache-v2-{{ checksum "html-pipeline-task_list.gemspec" }}
+            - html-pipeline-task_list-cache-v2-
 
       - run:
           name: install gems
           command: bundle install && bundle clean
 
+      - run:
+          name: install packages
+          command: npm install
+
       - save_cache:
-          key: html-pipeline-task_list-bundle-v2-{{ checksum "html-pipeline-task_list.gemspec" }}
+          key: html-pipeline-task_list-cache-v2-{{ checksum "html-pipeline-task_list.gemspec" }}
           paths:
-            - vendor/bundle
+            - vendor
+            - node_modules
 
       - run:
           name: run functional tests
           command: bundle exec rake test
+
+      - run:
+          name: run javascript unit tests
+          command: npm test
 
       - store_test_results:
           path: test_results
