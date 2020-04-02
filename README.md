@@ -81,8 +81,15 @@ For the backend Ruby components, add this line to your application's Gemfile:
 
 And then execute `bundle install`
 
-## Testing and Development
-before beginning testing and development, be sure to run `bundle install && npm install`
+## Development
+AAfter checking out the repo, run `bundle install && npm install` to install dependencies.
+
+To install this gem onto your local machine, run `bundle exec rake install`
+
+To release a new version, update run `bundle exec rake release` to create a git tag for the version.  push the git commits and tags and CI will automatically push to [RubyGems.org](https://rubygems.org).
+
+## Testing
+before beginning testing, be sure to run `bundle install && npm install`
 
 Ruby unit tests can be run with `rake test`.
 Javascript unit tests can be run with `npm test`
