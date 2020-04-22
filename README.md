@@ -86,7 +86,12 @@ After checking out the repo, run `bundle install && npm install` to install depe
 
 To install this gem onto your local machine, run `bundle exec rake install`
 
-To release a new version, update run `bundle exec rake release` to create a git tag for the version.  push the git commits and tags and CI will automatically push to [RubyGems.org](https://rubygems.org).
+To release a new version:
+1. Update version number <ver> in `lib/html/pipeline/task_list/version.rb`
+2. Run `gem git tag -a <ver> -m 'some msg'`
+3. Run `gem push --tags`
+
+Pushihg the git commits and tags will force CI to automatically push to [RubyGems.org](https://rubygems.org).
 
 ## Testing
 before beginning testing, be sure to run `bundle install && npm install`
