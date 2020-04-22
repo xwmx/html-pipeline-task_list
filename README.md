@@ -1,4 +1,4 @@
-# Task Lists
+# Task List
 
 This Gem provides various components necessary for integrating
 [Task Lists](https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments)
@@ -82,7 +82,7 @@ For the backend Ruby components, add this line to your application's Gemfile:
 And then execute `bundle install`
 
 ## Development
-AAfter checking out the repo, run `bundle install && npm install` to install dependencies.
+After checking out the repo, run `bundle install && npm install` to install dependencies.
 
 To install this gem onto your local machine, run `bundle exec rake install`
 
@@ -91,7 +91,7 @@ To release a new version, update run `bundle exec rake release` to create a git 
 ## Testing
 before beginning testing, be sure to run `bundle install && npm install`
 
-Ruby unit tests can be run with `rake test`.
+Ruby unit tests can be run with `bundle exec rake test`.
 Javascript unit tests can be run with `npm test`
 
 Functional tests can be run manually in the browser.  To do so:
