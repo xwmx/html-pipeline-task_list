@@ -1,5 +1,7 @@
 # Task List
 
+[![CircleCI](https://circleci.com/gh/codetree/html-pipeline-task_list/tree/master.svg?style=svg)](https://circleci.com/gh/codetree/html-pipeline-task_list/tree/master)
+
 This Gem provides various components necessary for integrating
 [Task Lists](https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments)
 into your GitHub-flavored-Markdown user content.
