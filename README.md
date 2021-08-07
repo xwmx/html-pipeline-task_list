@@ -88,8 +88,8 @@ To install this gem onto your local machine, run `bundle exec rake install`
 
 To release a new version:
 1. Update version number <ver> in `lib/html/pipeline/task_list/version.rb`
-2. Run `gem git tag -a <ver> -m 'some msg'`
-3. Run `gem push --tags`
+2. Run `git tag -a <ver> -m 'some msg'`
+3. Run `git push --tags`
 
 Pushihg the git commits and tags will force CI to automatically push to [RubyGems.org](https://rubygems.org).
 
