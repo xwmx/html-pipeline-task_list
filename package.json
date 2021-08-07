@@ -6,7 +6,7 @@
   "repository": "https://github.com/codetre/html-pipeline-task_list",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.4.1",
+    "jquery": "^3.6",
     "jquery-ujs": "^1.2.2"
   },
   "devDependencies": {
@@ -14,7 +14,7 @@
     "qunit": "^2.9.3"
   },
   "scripts": {
-    "server": "node ./test/server.js .",
+    "start": "node ./test/server.js .",
     "test": "node-qunit-puppeteer ./test/qunit.html 10000 --no-sandbox"
   },
   "main": [

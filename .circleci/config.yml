@@ -4,13 +4,14 @@ environment: &environment
   LOG_LEVEL: WARN
   TEST_PORT: 3000
   TEST_HOST: http://localhost:3000
+  TEST_REPORTS: /tmp/test-reports
 
 jobs:
   functional_tests:
     working_directory: ~/repos/html-pipeline-task_list
 
     docker:
-      - image: circleci/ruby:2.6.4-buster-node-browsers
+      - image: cimg/ruby:2.6.7-browsers
         environment:
           <<: *environment
 
@@ -19,7 +20,7 @@ jobs:
 
       - run:
           name: install bundler
-          command: gem install bundler:2.1.4
+          command: gem install bundler:2.2.17
 
       - run:
           name: check dependencies
@@ -34,7 +35,7 @@ jobs:
 
       - run:
           name: install gems
-          command: bundle install && bundle clean
+          command: bundle install
 
       - run:
           name: install packages
@@ -47,7 +48,7 @@ jobs:
             - node_modules
 
       - run:
-          name: run functional tests
+          name: run ruby unit tests
           command: bundle exec rake test
 
       - run:
@@ -55,13 +56,13 @@ jobs:
           command: npm test
 
       - store_test_results:
-          path: test_results
+          path: /tmp/test-results
 
   publish_to_rubygems:
     working_directory: ~/repos/html-pipeline-task_list
 
     docker:
-      - image: circleci/ruby:2.6.4-buster-node
+      - image: circleci/ruby:2.6.8-buster-node
         environment:
           <<: *environment
 
@@ -69,8 +70,11 @@ jobs:
       - checkout
 
       - run:
-          name: setup ubygems
-          command: bash .circleci/setup-rubygems.sh
+          name: setup rubygems
+          command: |
+            mkdir ~/.gem
+            echo -e "---\r\n:rubygems_api_key: $RUBYGEMS_API_KEY" > ~/.gem/credentials
+            chmod 0600 ~/.gem/credentials
 
       - run:
           name: publish to Rubygems

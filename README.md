@@ -100,7 +100,7 @@ Ruby unit tests can be run with `bundle exec rake test`.
 Javascript unit tests can be run with `npm test`
 
 Functional tests can be run manually in the browser.  To do so:
-1. run `npm run server`
+1. run `npm start`
 2. open a browser to http://localhost:3000/test/behavior.html
 3. you can also see the QUnit tests at http://localhost:4011/test/qunit.html
 
