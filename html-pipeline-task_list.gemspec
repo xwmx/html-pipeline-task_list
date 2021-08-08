@@ -29,6 +29,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard', '~> 2.18'
   gem.add_development_dependency 'guard-minitest', '~> 2.4'
   gem.add_development_dependency 'guard-rubocop', '~> 1.4'
+  gem.add_development_dependency 'guard-shell', '~> 0.7'
   gem.add_development_dependency 'json', '~> 2.5'
   gem.add_development_dependency 'minitest', '~> 5.14'
   gem.add_development_dependency 'rake', '~> 13.0'

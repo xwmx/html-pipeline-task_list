@@ -10,10 +10,14 @@
     "jquery-ujs": "^1.2.2"
   },
   "devDependencies": {
-    "node-qunit-puppeteer": "^2.0.1",
-    "qunit": "^2.9.3"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "node-qunit-puppeteer": "^2.1",
+    "qunit": "^2.16"
   },
   "scripts": {
+    "lint": "eslint --format stylish --color app/**/*.js",
     "start": "node ./test/server.js .",
     "test": "node-qunit-puppeteer ./test/qunit.html 10000 --no-sandbox"
   },

@@ -12,6 +12,10 @@ rubocop_opts = {
   cli: ['--display-cop-names']
 }
 
+shell_opts = {
+  all_on_start: true
+}
+
 group :rails, halt_on_fail: true do
   guard :minitest, minitest_opts do
     directories %w[test lib]
@@ -23,5 +27,17 @@ group :rails, halt_on_fail: true do
     directories %w[test lib]
     watch(%r{^test/.+\.rb$})
     watch(%r{^lib/(.+)\.rb$})
+  end
+
+  # run js tests
+  guard :shell, shell_opts do
+    directories %w[test app]
+    watch(%r{^app/(.+)\.js$}) { `npm test` }
+  end
+
+  # run linting
+  guard :shell, shell_opts do
+    directories %w[test app]
+    watch(%r{^app/(.+)\.js$}) { `npm run lint` }
   end
 end
