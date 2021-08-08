@@ -23,7 +23,7 @@ ifneq ($(shell gem query $(GEM_NAME) -r -a | grep -F $(GEM_VER)),)
 endif
 
 .check-branch:
-ifneq ($(BRANCH),"main")
+ifneq ($(BRANCH),main)
 	@echo ""
 	@echo "currently in $(BRANCH) branch. move to main."
 	@echo ""
