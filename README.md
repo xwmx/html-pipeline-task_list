@@ -84,22 +84,20 @@ For the backend Ruby components, add this line to your application's Gemfile:
 And then execute `bundle install`
 
 ## Development
-After checking out the repo, run `bundle install && npm install` to install dependencies.
+After checking out the repo, run `make setup` to install dependencies.
 
 To install this gem onto your local machine, run `bundle exec rake install`
 
 To release a new version:
 1. Update version number <ver> in `lib/html/pipeline/task_list/version.rb`
-2. Run `git tag -a <ver> -m 'some msg'`
-3. Run `git push --tags`
+2. Run `make push-gem`
 
 Pushihg the git commits and tags will force CI to automatically push to [RubyGems.org](https://rubygems.org).
 
 ## Testing
-before beginning testing, be sure to run `bundle install && npm install`
+before beginning testing, be sure to run `make setup`
 
-Ruby unit tests can be run with `bundle exec rake test`.
-Javascript unit tests can be run with `npm test`
+To run Ruby and Javascript unit tests and linting, run `make test`.
 
 Functional tests can be run manually in the browser.  To do so:
 1. run `npm start`
