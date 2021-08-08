@@ -30,7 +30,7 @@ ifneq ($(BRANCH),"main")
 	@exit 1
 endif
 
-push-gem: .check-gem-var .check-branch
+push-gem: .check-gem-ver .check-branch
 	git tag -a "v$(GEM_VER)" -m "creating v$(GEM_VER)"
 	git push --tags
 
