@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
 
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
 
-  gem.add_dependency 'html-pipeline', '~> 2.14'
+  gem.add_dependency 'html-pipeline', '>= 2.14'
 
   gem.add_development_dependency 'bundler', '~> 2.2.17'
   gem.add_development_dependency 'commonmarker', '~> 0.22.0'
