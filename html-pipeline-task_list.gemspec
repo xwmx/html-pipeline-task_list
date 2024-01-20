@@ -22,16 +22,16 @@ Gem::Specification.new do |gem|
 
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
 
-  gem.add_dependency 'html-pipeline', '~> 2.14'
+  gem.add_dependency 'html-pipeline'
 
-  gem.add_development_dependency 'bundler', '~> 2.2.17'
-  gem.add_development_dependency 'commonmarker', '~> 0.22.0'
-  gem.add_development_dependency 'guard', '~> 2.18'
-  gem.add_development_dependency 'guard-minitest', '~> 2.4'
-  gem.add_development_dependency 'guard-rubocop', '~> 1.4'
-  gem.add_development_dependency 'guard-shell', '~> 0.7'
-  gem.add_development_dependency 'json', '~> 2.5'
-  gem.add_development_dependency 'minitest', '~> 5.14'
-  gem.add_development_dependency 'rake', '~> 13.0'
-  gem.add_development_dependency 'rubocop', '~> 0.80.1'
+  gem.add_development_dependency 'bundler'
+  gem.add_development_dependency 'commonmarker'
+  gem.add_development_dependency 'guard'
+  gem.add_development_dependency 'guard-minitest'
+  gem.add_development_dependency 'guard-rubocop'
+  gem.add_development_dependency 'guard-shell'
+  gem.add_development_dependency 'json'
+  gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rubocop'
 end
